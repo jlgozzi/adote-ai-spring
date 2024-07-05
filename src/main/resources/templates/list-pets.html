@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Adote um Pet</title>
+  </head>
+  <body>
+    <h1>Adote um Pet</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Raça</th>
+          <th>Tamanho</th>
+          <th>Idade</th>
+          <th>Adotado</th>
+          <th>Número de Contato</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="pet : ${pets}">
+          <td th:text="${pet.id}">ID</td>
+          <td th:text="${pet.name}">Nome</td>
+          <td th:text="${pet.type}">Tipo</td>
+          <td th:text="${pet.breed}">Raça</td>
+          <td th:text="${pet.size}">Tamanho</td>
+          <td th:text="${pet.age}">Idade</td>
+          <td th:text="${pet.adopted}">Adotado</td>
+          <td th:text="${pet.contactNumber}">Número de Contato</td>
+          <td>
+            <form
+              th:action="@{/pets/adopt/{id}(id=${pet.id})}"
+              method="post"
+              style="display: inline"
+            >
+              <button type="submit">Adotar</button>
+            </form>
+            <form
+              th:action="@{/pets/delete/{id}(id=${pet.id})}"
+              method="post"
+              style="display: inline"
+            >
+              <input type="hidden" name="_method" value="delete" />
+              <button type="submit">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Deseja doar um pet? <a href="/pets/add">Clique aqui</a></p>
+  </body>
+</html>

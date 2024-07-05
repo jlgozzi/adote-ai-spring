@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adicionar Pet</title>
+</head>
+<body>
+    <h1>Adicionar Pet</h1>
+    <form th:action="@{/pets/add}" th:object="${pet}" method="post">
+        <p>Nome: <input type="text" th:field="*{name}" /></p>
+        <p>Tipo: <input type="text" th:field="*{type}" /></p>
+        <p>Raça: <input type="text" th:field="*{breed}" /></p>
+        <p>Tamanho: <input type="text" th:field="*{size}" /></p>
+        <p>Idade: <input type="number" th:field="*{age}" /></p>
+        <p>Número de Contato: <input type="text" th:field="*{contactNumber}" /></p>
+        <p><button type="submit">Adicionar</button></p>
+    </form>
+    <a href="/pets">Voltar</a>
+</body>
+</html>
